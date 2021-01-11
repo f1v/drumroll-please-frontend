@@ -26,7 +26,7 @@ export const nextNote = () => {
 export const notesInQueue: any = [];
 
 function scheduleNote(beatNumber: number, time: number) {
-  console.log(new Date().getTime() / 1000);
+  console.log(new Date().getTime() / 1000, 'beatNumber ', beatNumber, 'time ', time);
   // push the note on the queue, even if we're not playing.
   notesInQueue.push({ note: beatNumber, time: time });
 }
@@ -50,7 +50,10 @@ export const resetCounters = () => {
   startTime = audioCtx.currentTime + 0.005;
 };
 
-export const stop = () => window.clearTimeout(timerID);
+export const stop = () => {
+  currentNote = 0;
+  window.clearTimeout(timerID);
+}
 
 export const updatePadMap = (map: any) => padMap = map;
 
