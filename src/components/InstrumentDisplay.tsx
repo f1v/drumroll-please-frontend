@@ -7,7 +7,6 @@ import {
 
 const useStyles = makeStyles((theme: Theme) => ({
   instrumentContainer: {
-    border: 'solid black 2px',
     height: '100px',
     width: '100px'
   }
@@ -19,9 +18,9 @@ declare type Props = {
 function InstrumentDisplay({ instrument }: Props) {
   const classes = useStyles()
   return (
-    <Container className={classes.instrumentContainer}>
+    <div className={classes.instrumentContainer}>
       Instrument: {instrument}
-    </Container>
+    </div>
   )
 }
 

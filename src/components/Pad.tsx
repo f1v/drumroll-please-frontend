@@ -21,7 +21,7 @@ function Pad({ beat, isChecked, handleClick }: Props) {
       width: '4vw',
       backgroundColor: isChecked ? 'blue' : 'none',
       border: 'solid blue 1px',
-      margin: '2px'
+      margin: '3px'
     }
   }));
   const classes = useStyles()
