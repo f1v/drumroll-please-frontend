@@ -30,7 +30,7 @@ function Sequencer({ match }: Props) {
     modules: [],
   })
   const [shouldRefreshData, setShouldRefreshData] = useState(false)
-  
+
   useEffect(() => {
     console.log('use effect')
     loadData()
