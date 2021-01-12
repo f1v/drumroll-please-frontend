@@ -15,13 +15,10 @@ import Icon from '@material-ui/core/Icon';
 import Module from '../components/Module'
 import { getLoopSequence } from '../api/loop'
 import { updateModule } from '../api/module';
-<<<<<<< HEAD
 import PlayButton from './PlayButton';
 import TempoSlider from './TempoSlider';
 import { SchedulerContext } from '../context/SchedulerContext';
-=======
 import CreateNewModule from './CreateNewModule'
->>>>>>> 0218ad5... WIP create new Module
 
 declare type Props = {
   match: {
