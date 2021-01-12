@@ -13,3 +13,18 @@ export const getLoopSequence = async (id: number) => {
   const loopSequence = await response.json()
   return loopSequence
 }
+
+export const createLoop = async (name: string) => {
+  const data = {
+    name,
+  }
+  const response = await fetch(`${DEPLOYED_URL}/${route}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  const newLoop = await response.json()
+  return newLoop
+}
