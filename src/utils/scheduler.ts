@@ -47,7 +47,7 @@ export const scheduler = () => {
 // UPDATE VALUES
 export const resetCounters = () => {
   nextNoteTime = 0.0;
-  startTime = audioCtx.currentTime + 0.005;
+  startTime = audioCtx.currentTime + 0.200;
 };
 
 export const stop = () => {
