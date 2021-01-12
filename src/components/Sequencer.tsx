@@ -116,7 +116,7 @@ function Sequencer({ match }: Props) {
       Sequencer
       name: {sequenceData.name}
       {modules && modules.map(createModules)}
-      <CreateNewModule />
+      <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
     </Container>
   );
 }

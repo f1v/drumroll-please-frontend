@@ -39,3 +39,16 @@ export const updateModule = async (data: UpdateModuleParams) => {
   const updatedModule = await response.json()
   return updatedModule
 }
+
+export const createNewModule = async (instrument: string, loopId: number) => {
+  const data = { instrument, loopId }
+  const response = await fetch(`${DEPLOYED_URL}/${route}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  const newModule = await response.json()
+  return newModule
+}
