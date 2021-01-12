@@ -19,6 +19,7 @@ import PlayButton from './PlayButton';
 import TempoSlider from './TempoSlider';
 import { SchedulerContext } from '../context/SchedulerContext';
 import CreateNewModule from './CreateNewModule'
+import BeatIndicator from './BeatIndicator';
 
 declare type Props = {
   match: {
@@ -115,6 +116,7 @@ function Sequencer({ match }: Props) {
       <TempoSlider />
       Sequencer
       name: {sequenceData.name}
+      <BeatIndicator />
       {modules && modules.map(createModules)}
       <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
     </Container>
