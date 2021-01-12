@@ -18,7 +18,7 @@ export const nextNote = () => {
   nextNoteTime += secondsPerBeat;
   // Advance the beat number, wrap to zero
   currentNote++;
-  if (currentNote === 4) {
+  if (currentNote === 16) {
     currentNote = 0;
   }
 }
