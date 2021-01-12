@@ -19,11 +19,17 @@ function Home() {
   const classes = useStyles();
 
   return (
+<<<<<<< HEAD
     <SchedulerContextProvider>
       <Container component="main" className={classes.main} maxWidth="lg">
         {/* <Sequencer /> */}
       </Container>
       </SchedulerContextProvider>
+=======
+    <Container component="main" className={classes.main} maxWidth="lg">
+      <Sequencer />
+    </Container>
+>>>>>>> b610fd4... adress merge conflicts
   );
 }
 
