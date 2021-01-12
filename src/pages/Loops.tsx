@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import { getAllLoops } from '../api/loop'
+import CreateLoop from '../components/CreateLoop'
 
 declare type Loop = {
   name: string,
@@ -48,6 +49,7 @@ function Loops() {
       <div className={classes.loopsContainer}>
         {allLoops && allLoops.map(createLinksToLoops)}
       </div>
+      <CreateLoop />
     </Container>
   );
 }
