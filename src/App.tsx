@@ -76,6 +76,7 @@ import {
 
 import Home from './pages/Home';
 import Loops from './pages/Loops';
+import Sequencer from './components/Sequencer';
 
 function App() {
 
@@ -84,7 +85,8 @@ function App() {
       <div>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/loops" component={Loops} />
+          <Route path="/loops" exact component={Loops} />
+          <Route path="/loops/:id" component={Sequencer} />
         </Switch>
       </div>
     </Router>

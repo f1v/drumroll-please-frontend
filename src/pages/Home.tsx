@@ -21,7 +21,7 @@ function Home() {
   return (
     <SchedulerContextProvider>
       <Container component="main" className={classes.main} maxWidth="lg">
-        <Sequencer />
+        {/* <Sequencer /> */}
       </Container>
       </SchedulerContextProvider>
   );

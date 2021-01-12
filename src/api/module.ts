@@ -28,30 +28,14 @@ declare type UpdateModuleParams = {
 
 console.log(DEPLOYED_URL)
 
-export const updateModule = async ({
-  beat_1_1,
-  beat_1_2,
-  beat_1_3,
-  beat_1_4,
-  beat_2_1,
-  beat_2_2,
-  beat_2_3,
-  beat_2_4,
-  beat_3_1,
-  beat_3_2,
-  beat_3_3,
-  beat_3_4,
-  beat_4_1,
-  beat_4_2,
-  beat_4_3,
-  beat_4_4,
-  effects,
-  id,
-  instrument,
-  name,
-  volume,
-}: UpdateModuleParams) => {
-  const response = await fetch(`${DEPLOYED_URL}/${route}/${id}`)
+export const updateModule = async (data: UpdateModuleParams) => {
+  const response = await fetch(`${DEPLOYED_URL}/${route}/${data.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
   const updatedModule = await response.json()
   return updatedModule
 }
