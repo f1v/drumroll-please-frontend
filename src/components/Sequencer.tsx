@@ -18,9 +18,8 @@ declare type Props = {
 
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
 
-}));
+const useStyles = makeStyles((theme: Theme) => ({}));
 
 function Sequencer({ match }: Props) {
   const classes = useStyles();

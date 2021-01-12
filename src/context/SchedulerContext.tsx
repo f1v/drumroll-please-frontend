@@ -3,6 +3,8 @@ import {
   useReducer
 } from "react";
 
+import { updateTempo } from '../utils/scheduler';
+
 export type SchedulerContextType = {
   tempo: number;
   isPlaying: boolean;
@@ -29,6 +31,7 @@ function reducer(state: any, action: any) {
     case 'BEAT':
       return { ...state, beat: action.payload };
     case 'TEMPO':
+      updateTempo(action.payload);
       return { ...state, tempo: action.payload };
     default:
       throw new Error();
