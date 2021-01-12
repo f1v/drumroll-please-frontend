@@ -4,8 +4,7 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core';
-import Sequencer from '../components/Sequencer';
-import { SchedulerContextProvider } from '../context/SchedulerContext';
+// import Sequencer from '../components/Sequencer';
 
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
@@ -19,11 +18,9 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <SchedulerContextProvider>
-      <Container component="main" className={classes.main} maxWidth="lg">
-        {/* <Sequencer /> */}
-      </Container>
-      </SchedulerContextProvider>
+    <Container component="main" className={classes.main} maxWidth="lg">
+      {/* <Sequencer /> */}
+    </Container>
   );
 }
 
