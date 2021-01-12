@@ -27,7 +27,7 @@ function Home() {
       </SchedulerContextProvider>
 =======
     <Container component="main" className={classes.main} maxWidth="lg">
-      <Sequencer />
+      {/* <Sequencer /> */}
     </Container>
 >>>>>>> b610fd4... adress merge conflicts
   );

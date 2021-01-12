@@ -10,7 +10,7 @@ import { getLoopSequence } from '../api/loop'
 import { updateModule } from '../api/module';
 
 declare type Props = {
-  match?: {
+  match: {
     params: {
       id: number
     }
