@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Container,
   makeStyles,
   Theme,
 } from '@material-ui/core';
