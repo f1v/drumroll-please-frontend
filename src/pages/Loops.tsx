@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import {
   Container,
   makeStyles,
@@ -38,9 +39,9 @@ function Loops() {
   }
 
   const createLinksToLoops = (loop: Loop) => (
-    <a href={`/loops/${loop.id}`}>
+    <Link to={`/loops/${loop.id}`}>
       {loop.name || '[anonymous loop]'}
-    </a>
+    </Link>
   )
 
   return (

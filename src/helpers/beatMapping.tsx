@@ -21,6 +21,25 @@ export const mapIndexToBeatKey = (index: number): string => {
   return indexToBeatKeyMap[index]
 }
 
+export const indexToBeatKeyMap = [
+  'beat_1_1',
+  'beat_1_2',
+  'beat_1_3',
+  'beat_1_4',
+  'beat_2_1',
+  'beat_2_2',
+  'beat_2_3',
+  'beat_2_4',
+  'beat_3_1',
+  'beat_3_2',
+  'beat_3_3',
+  'beat_3_4',
+  'beat_4_1',
+  'beat_4_2',
+  'beat_4_3',
+  'beat_4_4'
+]
+
 export const mapBeatKeyToIndex = (beatKey: string): number => {
   const beatKeyToIndexMap = {
     beat_1_1: 0,

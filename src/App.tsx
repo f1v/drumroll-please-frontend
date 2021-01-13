@@ -3,11 +3,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  NavLink,
 } from "react-router-dom";
 import {
+  AppBar,
+  Button,
   Container,
   makeStyles,
   Theme,
+  Toolbar,
 } from '@material-ui/core';
 
 import Home from './pages/Home';
@@ -26,6 +30,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
   },
+  active: {
+    color: '#fff',
+  },
+  navBarLink: {
+    color: '#BDBDBD',
+    textDecoration: 'none',
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
 }));
 
 function App() {
@@ -36,6 +50,20 @@ function App() {
       <Router>
         <div className={classes.root}>
           <Container component="main" className={classes.main} maxWidth="lg">
+            <AppBar position="static">
+              <Toolbar>
+              <NavLink activeClassName={classes.active} className={classes.navBarLink} exact to="/">
+                <Button color="inherit" className={classes.menuButton}>
+                  Home
+                </Button>
+              </NavLink>
+              <NavLink activeClassName={classes.active} className={classes.navBarLink} to="/loops">
+                <Button color="inherit" className={classes.menuButton}>
+                  Loops
+                </Button>
+              </NavLink>
+              </Toolbar>
+            </AppBar>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/loops" exact component={Loops} />
