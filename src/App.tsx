@@ -15,7 +15,7 @@ import Loops from './pages/Loops';
 import Sequencer from './components/Sequencer';
 import { SchedulerContextProvider } from './context/SchedulerContext';
 import Icon from '@material-ui/core/Icon';
-import Recorder from './recorder/Recorder';
+import Recorder from './components/Recorder';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
