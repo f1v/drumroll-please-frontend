@@ -57,7 +57,6 @@ export const deleteModule = async (moduleId: number) => {
   const response = await fetch(`${DEPLOYED_URL}/${route}/${moduleId}`, {
     method: 'DELETE',
   })
-  console.log({ response })
   return response
 
 }

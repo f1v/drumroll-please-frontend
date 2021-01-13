@@ -76,9 +76,7 @@ function Module ({ moduleId, loopId, reload }: Props) {
   }
 
   const handleDelete = async () => {
-    console.log({ moduleId })
     const { status } = await deleteModule(moduleId)
-    console.log({ status })
     status === 200 && reload()
   }
 

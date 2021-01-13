@@ -19,9 +19,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   deleteContainer: {
     position: 'relative',
-    marginLeft: '-30px',
-    left: '30px'
+    marginLeft: '-16px',
+    left: '16px'
   },
+  confirmDelete: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    border: 'black 3px solid',
+    zIndex: 10,
+  }
 
 }));
 
@@ -35,7 +41,7 @@ function DeleteModule({ handleDelete }: Props) {
   return (
     <div className={classes.deleteContainer}>
       {isOpen && (
-        <div>
+        <div className={classes.confirmDelete}>
           Are you sure you want to delete?
 
           <button onClick={handleDelete}>Delete</button>
