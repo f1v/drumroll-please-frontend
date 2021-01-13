@@ -19,7 +19,7 @@ import TempoSlider from './TempoSlider';
 import { SchedulerContext } from '../context/SchedulerContext';
 import CreateNewModule from './CreateNewModule'
 import BeatIndicator from './BeatIndicator';
-import UpdateModuleButton from './UpdateModuleButton';
+import UpdateModulesButton from './UpdateModulesButton';
 
 declare type Props = {
   match: {
@@ -64,7 +64,6 @@ function Sequencer({ match }: Props) {
 
   /**
    * Start/stop state tells us when to start animating.
-   * We update the db when playing is stopped.
    */
   useEffect(() => {
     if (state.isPlaying) {
@@ -113,7 +112,7 @@ function Sequencer({ match }: Props) {
         <BeatIndicator />
         {modules && modules.map(createModules)}
         <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
-        <UpdateModuleButton />
+        <UpdateModulesButton />
       </div>
     )}
     </Container>
