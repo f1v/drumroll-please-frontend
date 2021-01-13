@@ -8,13 +8,13 @@ import { updateTempo } from '../utils/scheduler';
 export type SchedulerContextType = {
   tempo: number;
   isPlaying: boolean;
-  beat: number;
+  // beat: number;
 }
 
 const initialState = {
   tempo: 60,
   isPlaying: false,
-  beat: 0,
+  // beat: 0,
   loop: {
     name: '',
     id: null,
@@ -33,8 +33,8 @@ function reducer(state: any, action: any) {
   switch (action.type) {
     case 'PLAY_STOP':
       return { ...state, isPlaying: !state.isPlaying };
-    case 'BEAT':
-      return { ...state, beat: action.payload };
+    // case 'BEAT':
+    //   return { ...state, beat: action.payload };
     case 'TEMPO':
       updateTempo(action.payload);
       return { ...state, tempo: action.payload };

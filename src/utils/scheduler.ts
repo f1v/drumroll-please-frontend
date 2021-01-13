@@ -1,4 +1,6 @@
 import audioCtx from './audioContext';
+// import { proxy } from 'comlink';
+// import { startTimer } from './timer';
 
 let startTime = 0;
 // USER UPDATE VALUES
@@ -13,7 +15,7 @@ let lookahead = 8.0;
 let scheduleAheadTime = 0.120;
 
 export const nextNote = () => {
-  const secondsPerBeat = 60.0 / tempo;
+  const secondsPerBeat = 15.0 / tempo;
   // Add beat length to last beat time
   nextNoteTime += secondsPerBeat;
   // Advance the beat number, wrap to zero
@@ -40,7 +42,9 @@ export const scheduler = () => {
     // Convert noteTime to context time.
     scheduleNote(currentNote, nextNoteTime);
     nextNote();
+    // nextCallback && nextCallback();
   }
+  // startTimer(proxy(scheduler));
   timerID = window.setTimeout(scheduler, lookahead);
 }
 

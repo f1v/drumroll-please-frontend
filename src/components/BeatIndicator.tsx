@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
-import classnames from 'classnames';
+import React, {
+  // useContext
+} from 'react';
+// import classnames from 'classnames';
 import {
   Container,
   Grid,
@@ -7,11 +9,11 @@ import {
   Paper,
   Theme,
 } from '@material-ui/core';
-import { SchedulerContext } from '../context/SchedulerContext';
+// import { SchedulerContext } from '../context/SchedulerContext';
 
 function BeatIndicator() {
-  // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
-  const [state, dispatch] = useContext(SchedulerContext);
+  // // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
+  // const [state, dispatch] = useContext(SchedulerContext);
   const useStyles = makeStyles((theme: Theme) => ({
     container: {
       position: 'relative',
@@ -34,11 +36,11 @@ function BeatIndicator() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
+    <Container id='beat-indicator' className={classes.container}>
       <Grid container spacing={1}>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((value) => (
           <Grid key={value} item className={classes.card}>
-            <Paper className={classnames(classes.indicator, value === state.beat && classes.active)}/>
+            <Paper id={`indicator-${value}`} className={classes.indicator}/>
           </Grid>
         ))}
       </Grid>
