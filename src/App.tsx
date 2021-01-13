@@ -14,6 +14,8 @@ import Home from './pages/Home';
 import Loops from './pages/Loops';
 import Sequencer from './components/Sequencer';
 import { SchedulerContextProvider } from './context/SchedulerContext';
+import Icon from '@material-ui/core/Icon';
+import Recorder from './recorder/Recorder';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -41,6 +43,7 @@ function App() {
               <Route path="/loops/:id" component={Sequencer} />
             </Switch>
           </Container>
+          <Recorder />
         </div>
       </Router>
     </SchedulerContextProvider>
