@@ -100,6 +100,7 @@ function Sequencer({ match }: Props) {
       key={index}
       loopId={match.params.id}
       moduleId={module.id}
+      reload={loadData}
     />
   )
 

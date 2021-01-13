@@ -6,11 +6,14 @@ import {
 } from '@material-ui/core';
 import Pad from './Pad'
 import InstrumentDisplay from './InstrumentDisplay';
+import DeleteModule from './DeleteModule';
 import { SchedulerContext } from '../context/SchedulerContext';
+import { deleteModule } from '../api/module';
 
 declare type Props = {
   moduleId: number,
   loopId: number,
+  reload: () => void,
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -22,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-function Module ({ moduleId, loopId }: Props) {
+function Module ({ moduleId, loopId, reload }: Props) {
   const classes = useStyles()
   const defaultModuleParams = {
     beat_1_1: false,
@@ -72,6 +75,11 @@ function Module ({ moduleId, loopId }: Props) {
     updateBeat(beat)
   }
 
+  const handleDelete = async () => {
+    const { status } = await deleteModule(moduleId)
+    status === 200 && reload()
+  }
+
   return (
     <Container className={classes.moduleContainer}>
       <InstrumentDisplay instrument={module.instrument}/>
@@ -91,6 +99,7 @@ function Module ({ moduleId, loopId }: Props) {
       <Pad beat='beat_4_2' isChecked={module.beat_4_2} handleClick={handleClick}/>
       <Pad beat='beat_4_3' isChecked={module.beat_4_3} handleClick={handleClick}/>
       <Pad beat='beat_4_4' isChecked={module.beat_4_4} handleClick={handleClick}/>
+      <DeleteModule handleDelete={handleDelete}/>
     </Container>
   )
 }
