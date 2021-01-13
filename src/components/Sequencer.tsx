@@ -19,7 +19,7 @@ import TempoSlider from './TempoSlider';
 import { SchedulerContext } from '../context/SchedulerContext';
 import CreateNewModule from './CreateNewModule'
 import BeatIndicator from './BeatIndicator';
-import { updateModule } from '../api/module'
+import UpdateModuleButton from './UpdateModuleButton';
 
 declare type Props = {
   match: {
@@ -62,15 +62,6 @@ function Sequencer({ match }: Props) {
     requestRef.current = requestAnimationFrame(beatProgressAnimation);
   }
 
-  const persistLoopUpdates = async () => {
-    const modules = state.loop.modules;
-    const promises = modules.map(async (module: any) => {
-      const moduleRes = await updateModule(module)
-      return moduleRes
-    })
-    const moduleResponses = await Promise.all(promises);
-  }
-
   /**
    * Start/stop state tells us when to start animating.
    * We update the db when playing is stopped.
@@ -80,7 +71,6 @@ function Sequencer({ match }: Props) {
       requestAnimationFrame(beatProgressAnimation);
     } else {
       cancelAnimationFrame(requestRef.current);
-      persistLoopUpdates();
     }
   }, [state.isPlaying]);
 
@@ -123,6 +113,7 @@ function Sequencer({ match }: Props) {
         <BeatIndicator />
         {modules && modules.map(createModules)}
         <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
+        <UpdateModuleButton />
       </div>
     )}
     </Container>
