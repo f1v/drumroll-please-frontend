@@ -52,3 +52,12 @@ export const createNewModule = async (instrument: string, loopId: number) => {
   const newModule = await response.json()
   return newModule
 }
+
+export const deleteModule = async (moduleId: number) => {
+  const response = await fetch(`${DEPLOYED_URL}/${route}/${moduleId}`, {
+    method: 'DELETE',
+  })
+  console.log({ response })
+  return response
+
+}
