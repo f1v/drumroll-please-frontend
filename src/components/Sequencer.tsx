@@ -37,7 +37,6 @@ function Sequencer({ match }: Props) {
   // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
   const [state, dispatch] = useContext(SchedulerContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   /**
    * requestAnimationFrame keeps track of beat count from the scheduler.
    * Does some housekeeping and dispatches to BEAT to update the beat in the provider store.
@@ -49,11 +48,18 @@ function Sequencer({ match }: Props) {
     while (notesInQueue.length && notesInQueue[0].time < currentTime) {
       drawNote = notesInQueue[0].note;
       notesInQueue.splice(0, 1);   // remove note from queue
-      dispatch({
-        type: 'BEAT',
-        payload: drawNote,
-      })
+      const lastIndicator = (drawNote + 15) % 16;
+      const currentBeatIndicator = document.getElementById(`indicator-${drawNote}`);
+      const previousBeatIndicator = document.getElementById(`indicator-${lastIndicator}`);
+
+      if (currentBeatIndicator) {
+        currentBeatIndicator.style.backgroundColor = '#b5d3e7';
+      }
+      if (previousBeatIndicator) {
+        previousBeatIndicator.style.backgroundColor = '#fff';
+      }
     }
+
     // We only need to draw if the note has moved.
     if (lastNoteDrawn !== drawNote) {
       lastNoteDrawn = drawNote;
@@ -104,7 +110,6 @@ function Sequencer({ match }: Props) {
       <CircularProgress />
     ) : (
       <div>
-        <div>Current Beat: {state.beat}</div>
         <PlayButton />
         <TempoSlider />
         Sequencer
