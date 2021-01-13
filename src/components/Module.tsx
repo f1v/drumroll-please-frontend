@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
-import { updateModule } from '../api/module'
+import React, { useContext } from 'react';
 import {
   Container,
   makeStyles,
   Theme,
 } from '@material-ui/core';
 import Pad from './Pad'
-import InstrumentDisplay from './InstrumentDisplay'
+import InstrumentDisplay from './InstrumentDisplay';
+import { SchedulerContext } from '../context/SchedulerContext';
 
 declare type Props = {
-  index: number,
-  initialData: any,
   moduleId: number,
   loopId: number,
-  onChange: () => void,
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-function Module ({ index, initialData, moduleId, loopId, onChange }: Props) {
+function Module ({ moduleId, loopId }: Props) {
   const classes = useStyles()
   const defaultModuleParams = {
     beat_1_1: false,
@@ -52,30 +49,26 @@ function Module ({ index, initialData, moduleId, loopId, onChange }: Props) {
     volume: 50,
   }
 
-  const [module, setModule] = useState(initialData || defaultModuleParams)
+  // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
+  const [state, dispatch] = useContext(SchedulerContext);
+  const module = state.loop.modules.find((module: any) => module.id === moduleId);
 
-  const update = async (key: string, value: any) => {
-    // @ts-ignore
-    const updatedModule = await updateModule({
-      ...module,
-      [key]: value,
-    })
-    console.log({ updatedModule })
-    // @ts-ignore
-    updatedModule && setModule(updatedModule)
-  }
-
-  const updateBeat = async (beat: string) => {
-    console.log(beat)
+  const updateBeat = (beat: string) => {
     const prevBeat = module[beat]
     const newBeat = !prevBeat
-    update(beat, newBeat)
+    dispatch({
+      type: 'UPDATE_MODULE',
+      payload: {
+        id: moduleId,
+        beat: beat,
+        value: newBeat,
+      }
+    })
   }
 
-  const handleClick = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(event.target)
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // @ts-ignore
-    const beat = event.target.id 
+    const beat = event.target.id
     updateBeat(beat)
   }
 
