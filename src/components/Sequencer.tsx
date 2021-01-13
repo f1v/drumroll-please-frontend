@@ -20,6 +20,7 @@ import { SchedulerContext } from '../context/SchedulerContext';
 import CreateNewModule from './CreateNewModule'
 import BeatIndicator from './BeatIndicator';
 import UpdateModulesButton from './UpdateModulesButton';
+import Recorder from './Recorder';
 
 declare type Props = {
   match: {
@@ -119,6 +120,7 @@ function Sequencer({ match }: Props) {
         {modules && modules.map(createModules)}
         <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
         <UpdateModulesButton />
+        <Recorder />
       </div>
     )}
     </Container>
