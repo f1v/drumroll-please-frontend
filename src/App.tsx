@@ -18,6 +18,7 @@ import Home from './pages/Home';
 import Loops from './pages/Loops';
 import Sequencer from './components/Sequencer';
 import { SchedulerContextProvider } from './context/SchedulerContext';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
