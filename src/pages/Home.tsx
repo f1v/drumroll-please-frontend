@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import {
   Container,
   makeStyles,
@@ -20,22 +21,22 @@ function Home() {
   return (
     <Container component="main" className={classes.main} maxWidth="lg">
       <h1>Drumroll Please</h1>
-      <a href='/loops'>
+      <Link to='/loops'>
         <div>
           <img 
             src={'home-image.png'}
             width="90%"
           />
         </div>
-      </a>
-      <a href="/loops">
+      </Link>
+      <Link to="/loops">
         <Button
           variant="contained"
           color="primary"
         >
           Get Started
         </Button> 
-      </a>
+      </Link>
     </Container>
   );
 }
