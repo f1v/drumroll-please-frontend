@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  Button,
   makeStyles,
   Theme,
 } from '@material-ui/core';
@@ -44,8 +45,8 @@ function DeleteModule({ handleDelete }: Props) {
         <div className={classes.confirmDelete}>
           Are you sure you want to delete?
 
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={handleClick}>Cancel</button>
+          <Button onClick={handleDelete}>Delete</Button>
+          <Button onClick={handleClick}>Cancel</Button>
         </div>
       )}
       <div className={classes.deleteButton} onClick={handleClick}>
