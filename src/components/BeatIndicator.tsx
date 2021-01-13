@@ -1,7 +1,4 @@
-import React, {
-  // useContext
-} from 'react';
-// import classnames from 'classnames';
+import React from 'react';
 import {
   Container,
   Grid,
@@ -9,11 +6,11 @@ import {
   Paper,
   Theme,
 } from '@material-ui/core';
-// import { SchedulerContext } from '../context/SchedulerContext';
 
+/**
+ * Indicators are updated from beatProgressAnimation
+ */
 function BeatIndicator() {
-  // // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
-  // const [state, dispatch] = useContext(SchedulerContext);
   const useStyles = makeStyles((theme: Theme) => ({
     container: {
       position: 'relative',
