@@ -26,6 +26,8 @@ import {
   setSamples,
   playKickSample,
   playSnareSample,
+  playHiHatSample,
+  playTomSample
  } from '../instruments';
 import loadSamples from '../utils/loadSamples';
 import { indexToBeatKeyMap } from '../helpers/beatMapping';
@@ -54,11 +56,23 @@ function Sequencer({ match }: Props) {
   const playAudioLogic = useCallback((currentNote: number, globalState: any) => {
     const currentBeat = indexToBeatKeyMap[currentNote];
     groupedModules = _.groupBy(globalState.modules, 'instrument');
-    if (groupedModules.bass[0][currentBeat]) {
+    console.log(state.loop)
+    if (groupedModules.bass && groupedModules.bass[0][currentBeat]) {
       playKickSample();
     }
-    if (groupedModules['snare drum'][0][currentBeat]) {
+
+    if (groupedModules['bass drum'] && groupedModules['bass drum'][0][currentBeat]) {
+      playKickSample();
+    }
+
+    if (groupedModules['snare drum'] && groupedModules['snare drum'][0][currentBeat]) {
       playSnareSample();
+    }
+    if (groupedModules.cymbal && groupedModules.cymbal[0][currentBeat]) {
+      playHiHatSample();
+    }
+    if (groupedModules.tom && groupedModules.tom[0][currentBeat]) {
+      playTomSample();
     }
   }, [state]);
   /**
