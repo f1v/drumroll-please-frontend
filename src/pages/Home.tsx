@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import {
   Container,
   makeStyles,
   Theme,
+  Button,
 } from '@material-ui/core';
-// import Sequencer from '../components/Sequencer';
 
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
@@ -19,7 +20,23 @@ function Home() {
 
   return (
     <Container component="main" className={classes.main} maxWidth="lg">
-      {/* <Sequencer /> */}
+      <h1>Drumroll Please</h1>
+      <Link to='/loops'>
+        <div>
+          <img 
+            src={'home-image.png'}
+            width="90%"
+          />
+        </div>
+      </Link>
+      <Link to="/loops">
+        <Button
+          variant="contained"
+          color="primary"
+        >
+          Get Started
+        </Button> 
+      </Link>
     </Container>
   );
 }
