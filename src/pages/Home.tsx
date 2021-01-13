@@ -3,8 +3,8 @@ import {
   Container,
   makeStyles,
   Theme,
+  Button,
 } from '@material-ui/core';
-// import Sequencer from '../components/Sequencer';
 
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
@@ -19,7 +19,23 @@ function Home() {
 
   return (
     <Container component="main" className={classes.main} maxWidth="lg">
-      {/* <Sequencer /> */}
+      <h1>Drumroll Please</h1>
+      <a href='/loops'>
+        <div>
+          <img 
+            src={'home-image.png'}
+            width="90%"
+          />
+        </div>
+      </a>
+      <a href="/loops">
+        <Button
+          variant="contained"
+          color="primary"
+        >
+          Get Started
+        </Button> 
+      </a>
     </Container>
   );
 }
