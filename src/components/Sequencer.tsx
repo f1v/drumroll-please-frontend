@@ -7,19 +7,19 @@ import React, {
 import audioCtx from '../utils/audioContext';
 import { notesInQueue } from '../utils/scheduler';
 import {
+  CircularProgress,
   Container,
   makeStyles,
   Theme,
 } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
 import Module from '../components/Module'
 import { getLoopSequence } from '../api/loop'
-import { updateModule } from '../api/module';
 import PlayButton from './PlayButton';
 import TempoSlider from './TempoSlider';
 import { SchedulerContext } from '../context/SchedulerContext';
 import CreateNewModule from './CreateNewModule'
 import BeatIndicator from './BeatIndicator';
+import UpdateModulesButton from './UpdateModulesButton';
 
 declare type Props = {
   match: {
@@ -27,9 +27,7 @@ declare type Props = {
       id: number
     }
   },
-
 }
-
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
@@ -38,13 +36,7 @@ function Sequencer({ match }: Props) {
   const requestRef = useRef<number>(0);
   // @ts-ignore Type '{ state: SchedulerContextType; dispatch: Dispatch<any>; }' is not an array type.
   const [state, dispatch] = useContext(SchedulerContext);
-
-  const [sequenceData, setSequenceData] = useState({
-    name: '',
-    id: null,
-    modules: [],
-  })
-  const [shouldRefreshData, setShouldRefreshData] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   /**
    * requestAnimationFrame keeps track of beat count from the scheduler.
@@ -71,7 +63,7 @@ function Sequencer({ match }: Props) {
   }
 
   /**
-   * Start/stop state tells us when to start animating
+   * Start/stop state tells us when to start animating.
    */
   useEffect(() => {
     if (state.isPlaying) {
@@ -83,42 +75,46 @@ function Sequencer({ match }: Props) {
 
 
   useEffect(() => {
-    console.log('use effect')
     loadData()
   }, [match.params.id])
 
   const loadData = async () => {
-    const sequenceData = await getLoopSequence(match.params.id)
-    sequenceData && setSequenceData(sequenceData)
-  }
-
-  const setModule = () => {
-
+    const sequenceData = await getLoopSequence(match.params.id);
+    if (sequenceData) {
+      dispatch({
+        type: 'FETCH_LOOP',
+        payload: sequenceData,
+      })
+      setIsLoading(false);
+    }
   }
 
   const createModules = (module: any, index: number) => (
     <Module
       key={index}
-      index={index}
-      initialData={module}
       loopId={match.params.id}
       moduleId={module.id}
-      onChange={setModule}
     />
   )
 
-  const { modules } = sequenceData
-
+  const modules = state.loop && state.loop.modules;
   return (
     <Container maxWidth="lg">
-      <div>Current Beat: {state.beat}</div>
-      <PlayButton />
-      <TempoSlider />
-      Sequencer
-      name: {sequenceData.name}
-      <BeatIndicator />
-      {modules && modules.map(createModules)}
-      <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
+      {isLoading ? (
+      <CircularProgress />
+    ) : (
+      <div>
+        <div>Current Beat: {state.beat}</div>
+        <PlayButton />
+        <TempoSlider />
+        Sequencer
+        name: {state.loop.name}
+        <BeatIndicator />
+        {modules && modules.map(createModules)}
+        <CreateNewModule loopId={match.params.id} reloadData={loadData}/>
+        <UpdateModulesButton />
+      </div>
+    )}
     </Container>
   );
 }

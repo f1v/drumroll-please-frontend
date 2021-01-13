@@ -15,6 +15,11 @@ const initialState = {
   tempo: 60,
   isPlaying: false,
   beat: 0,
+  loop: {
+    name: '',
+    id: null,
+    modules: [],
+  },
 }
 export const SchedulerContext = createContext<{
   state: SchedulerContextType;
@@ -33,6 +38,25 @@ function reducer(state: any, action: any) {
     case 'TEMPO':
       updateTempo(action.payload);
       return { ...state, tempo: action.payload };
+    case 'FETCH_LOOP':
+      return {
+        ...state, loop: {
+          id: action.payload.id,
+          modules: action.payload.modules,
+          name: action.payload.name,
+        }
+      };
+    case 'UPDATE_MODULE':
+      return {
+        ...state,
+        loop: {
+          ...state.loop,
+          modules: state.loop.modules.map(
+            (module: any) => module.id === action.payload.id ? { ...module, [action.payload.beat]: action.payload.value }
+              : module
+          )
+        }
+      };
     default:
       throw new Error();
   }
